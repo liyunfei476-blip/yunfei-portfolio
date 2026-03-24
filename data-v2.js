@@ -287,7 +287,7 @@ const personalPhoto = {
     id: 'personal-photo',
     title: '个人照片',
     description: '个人形象照片',
-    filePath: '个人照片/个人照片.JPG',
+    filePath: '个人照片/个人照片.jpg',
     type: 'image'
 };
 

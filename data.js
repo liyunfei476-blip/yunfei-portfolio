@@ -25,7 +25,7 @@ const portfolioData = [
         description: '个人形象照片',
         type: 'image',
         category: 'about',
-        filePath: '个人照片/个人照片.JPG',
+        filePath: '个人照片/个人照片.jpg',
         tags: ['照片'],
     },
 
