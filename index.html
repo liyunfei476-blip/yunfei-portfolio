@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>李云飞 | Portfolio Archive</title>
+    <title>李云飞 | Portfolio Playground</title>
     <meta name="description" content="李云飞的个人作品集，聚焦研究、流程系统、产品原型与表达实践。">
     <link rel="icon" type="image/jpeg" href="个人照片/个人照片.jpg">
     <link rel="stylesheet" href="style.css">
@@ -14,70 +14,80 @@
             <div class="brand-lockup">
                 <span class="brand-mark"></span>
                 <div>
-                    <p class="brand-kicker">Portfolio Archive</p>
+                    <p class="brand-kicker">Portfolio Playground</p>
                     <h1>李云飞</h1>
                 </div>
             </div>
             <nav class="site-nav" aria-label="页面导航">
-                <a href="#selected-work">作品精选</a>
+                <a href="#selected-work">精选项目</a>
                 <a href="#archive">全部目录</a>
                 <a href="#contact">联系</a>
             </nav>
         </header>
 
         <main>
-            <section class="hero">
+            <section class="hero-board">
                 <div class="hero-copy">
                     <p id="hero-kicker" class="section-kicker"></p>
                     <h2 id="hero-title"></h2>
-                    <p id="hero-intro" class="hero-text"></p>
-                    <p id="hero-statement" class="hero-text hero-text--muted"></p>
+                    <p id="hero-intro" class="hero-lead"></p>
+                    <div class="hero-stamp-row">
+                        <span class="stamp stamp--blue">Portfolio 2026</span>
+                        <span class="stamp stamp--red">真实文件可打开</span>
+                        <span class="stamp stamp--lime">非模板化展示</span>
+                    </div>
                     <div class="hero-actions">
                         <a href="#selected-work" class="button button--solid">进入作品</a>
                         <a id="hero-resume" href="#" target="_blank" rel="noreferrer" class="button button--ghost">查看简历</a>
                     </div>
                 </div>
 
-                <div class="hero-portrait">
-                    <div class="portrait-card">
+                <div class="hero-collage">
+                    <article class="collage-card collage-card--portrait">
                         <img id="portrait-image" class="portrait-image" src="" alt="">
-                    </div>
-                    <div class="portrait-note">
-                        <p>目前关注</p>
-                        <strong>AI 应用、数据流程、产品化表达</strong>
-                    </div>
+                    </article>
+                    <article class="collage-card collage-card--quote">
+                        <p id="hero-statement"></p>
+                    </article>
+                    <article class="collage-card collage-card--mini">
+                        <span>Base</span>
+                        <strong>重庆</strong>
+                    </article>
+                    <article class="collage-card collage-card--mini-alt">
+                        <span>Focus</span>
+                        <strong>AI × Data × Product</strong>
+                    </article>
                 </div>
             </section>
 
-            <section class="overview-grid">
-                <div class="overview-panel">
-                    <div id="stats-grid" class="stats-grid"></div>
-                </div>
-                <div class="overview-panel">
-                    <p class="panel-label">工作方法</p>
-                    <ul id="notes-list" class="notes-list"></ul>
-                </div>
-                <div id="contact-panel" class="overview-panel"></div>
+            <section class="ticker-strip" aria-label="能力标签滚动带">
+                <div id="ticker-track" class="ticker-track"></div>
             </section>
 
-            <section class="section-block" id="selected-work">
+            <section class="dashboard-grid">
+                <div id="stats-wall" class="stats-wall"></div>
+                <div id="note-stack" class="note-stack"></div>
+                <div id="contact-board" class="contact-board"></div>
+            </section>
+
+            <section class="section-block section-block--featured" id="selected-work">
                 <div class="section-heading">
                     <div>
                         <p class="section-kicker">Selected Work</p>
                         <h3>先看最能代表我的四组作品</h3>
                     </div>
-                    <p class="section-summary">这些项目分别对应我最常切换的工作状态: 搭系统、做产品、做试验、做沉淀。</p>
+                    <p class="section-summary">我把不同工作方式并列放出来，而不是全部揉成同一种“项目卡片”。</p>
                 </div>
                 <div id="featured-grid" class="featured-grid"></div>
             </section>
 
-            <section class="section-block" id="archive">
+            <section class="section-block archive-shell" id="archive">
                 <div class="section-heading">
                     <div>
                         <p class="section-kicker">Archive</p>
-                        <h3>全部目录</h3>
+                        <h3>按视角筛选，而不是按模板栏目堆砌</h3>
                     </div>
-                    <p class="section-summary">按工作视角筛选，而不是按模板栏目名机械拆分。</p>
+                    <p class="section-summary">想看流程、产品、研究还是表达，可以直接切，不需要在一个长页面里迷路。</p>
                 </div>
                 <div id="lens-row" class="lens-row" aria-label="作品视角筛选"></div>
                 <div id="archive-list" class="archive-list"></div>

@@ -2,18 +2,20 @@ let activeLens = 'all';
 let selectedCollectionId = null;
 let selectedAssetId = null;
 
+const tickerItems = Array.from({ length: 10 }, () => 'AI 应用<em></em>数据流程<em></em>产品原型<em></em>研究沉淀');
+
 document.addEventListener('DOMContentLoaded', () => {
     renderHero();
-    renderOverview();
+    renderTicker();
+    renderDashboard();
     renderLensChips();
     renderFeatured();
     renderArchive();
     bindModalEvents();
-    document.getElementById('current-year').textContent = new Date().getFullYear();
 });
 
 function renderHero() {
-    document.getElementById('hero-kicker').textContent = 'Research, Systems, Product';
+    document.getElementById('hero-kicker').textContent = 'Research / Systems / Product';
     document.getElementById('hero-title').textContent = profile.role;
     document.getElementById('hero-intro').textContent = profile.intro;
     document.getElementById('hero-statement').textContent = profile.statement;
@@ -25,24 +27,37 @@ function renderHero() {
     document.getElementById('portrait-image').alt = `${profile.name} 个人照片`;
 }
 
-function renderOverview() {
-    const statsContainer = document.getElementById('stats-grid');
-    statsContainer.innerHTML = quickStats.map(item => `
-        <div class="stat-block">
+function renderTicker() {
+    document.getElementById('ticker-track').innerHTML = tickerItems.map(item => `<span>${item}</span>`).join('');
+}
+
+function renderDashboard() {
+    const statsContainer = document.getElementById('stats-wall');
+    statsContainer.innerHTML = quickStats.map((item, index) => `
+        <article class="stat-card stat-card--${(index % 3) + 1}">
             <strong>${item.value}</strong>
             <span>${item.label}</span>
-        </div>
+        </article>
     `).join('');
 
-    const notesContainer = document.getElementById('notes-list');
-    notesContainer.innerHTML = practiceNotes.map(note => `<li>${note}</li>`).join('');
+    const notesContainer = document.getElementById('note-stack');
+    notesContainer.innerHTML = practiceNotes.map((note, index) => `
+        <article class="sticky-note sticky-note--${(index % 3) + 1}">
+            <span>Note 0${index + 1}</span>
+            <p>${note}</p>
+        </article>
+    `).join('');
 
-    const contactContainer = document.getElementById('contact-panel');
+    const contactContainer = document.getElementById('contact-board');
     contactContainer.innerHTML = `
-        <p class="panel-label">现在的我</p>
-        <div class="contact-line"><span>地点</span><strong>${profile.location}</strong></div>
-        <div class="contact-line"><span>邮箱</span><a href="mailto:${profile.email}">${profile.email}</a></div>
-        <div class="contact-line"><span>电话</span><a href="tel:${profile.phone}">${profile.phone}</a></div>
+        <p class="panel-label">Now Available</p>
+        <div class="contact-line">地点: <strong>${profile.location}</strong></div>
+        <div class="contact-line">邮箱: <a href="mailto:${profile.email}">${profile.email}</a></div>
+        <div class="contact-line">电话: <a href="tel:${profile.phone}">${profile.phone}</a></div>
+        <div class="divider"></div>
+        <div class="board-note">不把所有项目做成同一种卡片</div>
+        <div class="board-note">让文件、截图和过程直接出镜</div>
+        <div class="board-note">既有系统感，也保留表达欲</div>
     `;
 }
 
@@ -71,6 +86,7 @@ function renderFeatured() {
         <article class="featured-card featured-card--${(index % 4) + 1}" data-collection-id="${collection.id}">
             <div class="featured-media">
                 ${renderFeaturedMedia(collection)}
+                <div class="featured-chip">${collection.year}</div>
             </div>
             <div class="featured-body">
                 <p class="card-kicker">${collection.eyebrow}</p>
@@ -93,6 +109,7 @@ function renderFeaturedMedia(collection) {
     if (firstAsset && firstAsset.type === 'image') {
         return `<img src="${collection.featuredAsset}" alt="${collection.title}">`;
     }
+
     return `
         <div class="featured-placeholder">
             <span>${collection.eyebrow}</span>
@@ -117,8 +134,8 @@ function renderArchive() {
                 <span>${collection.assets.length} 份文件</span>
             </div>
             <button type="button" class="archive-action" data-collection-id="${collection.id}">
-                <span>展开</span>
-                <span>↗</span>
+                <span>展开查看</span>
+                <span>→</span>
             </button>
         </article>
     `).join('');
@@ -159,7 +176,6 @@ function renderModal() {
     document.getElementById('modal-kicker').textContent = collection.eyebrow;
     document.getElementById('modal-title').textContent = collection.title;
     document.getElementById('modal-description').textContent = collection.detail;
-
     document.getElementById('modal-metrics').innerHTML = collection.metrics.map(metric => `<span>${metric}</span>`).join('');
 
     const assetList = document.getElementById('modal-asset-list');
@@ -185,12 +201,14 @@ function renderModal() {
     document.getElementById('asset-type').textContent = getTypeLabel(asset.type);
     document.getElementById('asset-title').textContent = asset.title;
     document.getElementById('asset-description').textContent = asset.description;
+
     const assetOpen = document.getElementById('asset-open');
     assetOpen.href = asset.filePath;
     assetOpen.removeAttribute('download');
     if (asset.type === 'pdf' || asset.type === 'apk' || asset.type === 'other') {
         assetOpen.setAttribute('download', '');
     }
+
     document.getElementById('asset-tags').innerHTML = asset.tags.map(tag => `<span>${tag}</span>`).join('');
 }
 
@@ -219,7 +237,7 @@ function getAssetPreview(asset, collection) {
                 <a class="button button--solid" href="${asset.filePath}" target="_blank" rel="noreferrer">新窗口打开</a>
                 <a class="button button--ghost" href="${asset.filePath}" download>下载文件</a>
             </div>
-            ${collection.assets.some(item => item.type === 'image') ? '<p class="preview-caption">左侧素材列表里也有这个项目的界面图或演示图，可继续切换查看。</p>' : ''}
+            ${collection.assets.some(item => item.type === 'image' || item.type === 'video') ? '<p class="preview-caption">左侧素材列表里也有这个项目的界面图或演示图，可继续切换查看。</p>' : ''}
         </div>
     `;
 }
