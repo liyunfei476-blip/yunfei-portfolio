@@ -155,9 +155,9 @@ video {
 }
 
 .hero h2 {
-    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-size: clamp(2.45rem, 6vw, 4.4rem);
     line-height: 0.94;
-    max-width: 8.5ch;
+    max-width: 10.5ch;
 }
 
 .hero-lead,
@@ -219,13 +219,11 @@ video {
 }
 
 .hero-side {
-    display: grid;
-    grid-template-columns: 0.92fr 1.08fr;
-    gap: 14px;
-    align-items: stretch;
+    display: block;
 }
 
 .portrait-panel {
+    position: relative;
     overflow: hidden;
     border: 2px solid var(--outline);
     border-radius: 24px;
@@ -255,11 +253,24 @@ video {
     background-color: var(--butter);
 }
 
+.hero-note--overlay {
+    position: absolute;
+    right: 16px;
+    bottom: 18px;
+    max-width: min(250px, calc(100% - 32px));
+    box-shadow: 4px 6px 0 rgba(46, 42, 38, 0.16);
+    transform: rotate(-3deg);
+}
+
 .hero-note span {
     font-size: 0.72rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--muted);
+}
+
+.hero-note strong {
+    line-height: 1.35;
 }
 
 .info-ribbon {
@@ -329,9 +340,9 @@ video {
 
 .editorial-panel h3 {
     margin-bottom: 14px;
-    font-size: clamp(1.7rem, 3vw, 2.3rem);
+    font-size: clamp(1.45rem, 2.8vw, 2.05rem);
     line-height: 1.08;
-    max-width: 14ch;
+    max-width: 18ch;
 }
 
 .notes-list {
@@ -709,7 +720,6 @@ video {
 
 @media (max-width: 1080px) {
     .hero,
-    .hero-side,
     .editorial-grid,
     .modal-grid {
         grid-template-columns: 1fr;
@@ -774,5 +784,13 @@ video {
 
     .modal-shell {
         padding: 10px;
+    }
+
+    .hero-note--overlay {
+        right: 12px;
+        bottom: 12px;
+        max-width: calc(100% - 24px);
+        padding: 14px;
+        transform: rotate(-2deg);
     }
 }

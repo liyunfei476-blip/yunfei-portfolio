@@ -21,7 +21,7 @@ function renderHero() {
     document.getElementById('hero-resume').href = profile.resume;
     document.getElementById('footer-mail').href = `mailto:${profile.email}`;
     document.getElementById('footer-resume').href = profile.resume;
-    document.getElementById('footer-copy').textContent = '如果你想进一步了解项目细节、实习经历或合作可能，可以直接联系我。';
+    document.getElementById('footer-copy').textContent = '真心希望能够得到您的关注！';
     document.getElementById('portrait-image').src = profile.portrait;
     document.getElementById('portrait-image').alt = `${profile.name} 个人照片`;
 }
