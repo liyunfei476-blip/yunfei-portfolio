@@ -19,10 +19,9 @@ function renderHero() {
     document.getElementById('hero-intro').textContent = profile.intro;
     document.getElementById('hero-statement').textContent = profile.statement;
     document.getElementById('hero-resume').href = profile.resume;
-    document.getElementById('footer-location').textContent = profile.location;
     document.getElementById('footer-mail').href = `mailto:${profile.email}`;
     document.getElementById('footer-resume').href = profile.resume;
-    document.getElementById('footer-copy').textContent = '如需了解更多项目细节、实习经历或合作机会，欢迎通过以下方式与我联系。';
+    document.getElementById('footer-copy').textContent = '如果你想进一步了解项目细节、实习经历或合作可能，可以直接联系我。';
     document.getElementById('portrait-image').src = profile.portrait;
     document.getElementById('portrait-image').alt = `${profile.name} 个人照片`;
 }
@@ -40,11 +39,10 @@ function renderPanels() {
     document.getElementById('notes-list').innerHTML = practiceNotes.map(note => `<li>${note}</li>`).join('');
 
     document.getElementById('contact-panel').innerHTML = `
-        <p class="panel-label">Currently Focused On</p>
-        <div class="contact-line">AI 应用落地、数据流程优化与产品化实践</div>
-        <div class="contact-line">7 组核心作品</div>
-        <div class="contact-line">20+ 可直接打开的文件</div>
-        <div class="contact-line">3 个主要工作方向</div>
+        <p class="panel-label">Availability</p>
+        <div class="contact-line">地点: <span>${profile.location}</span></div>
+        <div class="contact-line">邮箱: <a href="mailto:${profile.email}">${profile.email}</a></div>
+        <div class="contact-line">电话: <a href="tel:${profile.phone}">${profile.phone}</a></div>
     `;
 }
 
