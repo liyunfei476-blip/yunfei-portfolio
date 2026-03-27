@@ -8,8 +8,8 @@
     --muted: #697280;
     --accent: #284a6b;
     --accent-soft: #e4ebe9;
-    --display: 'Iowan Old Style', 'Palatino Linotype', 'Noto Serif SC', serif;
-    --sans: 'Avenir Next', 'PingFang SC', 'Helvetica Neue', sans-serif;
+    --display: 'Comic Sans MS', 'Marker Felt', 'Chalkboard SE', 'Hannotate SC', 'PingFang SC', cursive;
+    --sans: 'Comic Sans MS', 'Marker Felt', 'Chalkboard SE', 'Hannotate SC', 'PingFang SC', sans-serif;
 }
 
 * {
@@ -49,6 +49,10 @@ body.is-locked {
 a,
 button {
     font: inherit;
+}
+
+[hidden] {
+    display: none !important;
 }
 
 img,
@@ -112,6 +116,7 @@ video {
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--muted);
+    font-weight: 700;
 }
 
 .site-header h1,
@@ -138,6 +143,7 @@ video {
 .text-link {
     color: var(--ink);
     text-decoration: none;
+    font-weight: 700;
 }
 
 .site-nav a:hover,
@@ -205,6 +211,7 @@ video {
     background: transparent;
     color: var(--ink);
     text-decoration: none;
+    border-radius: 18px;
     transition:
         transform 150ms ease,
         background-color 150ms ease,
@@ -229,6 +236,7 @@ video {
 .portrait-panel {
     overflow: hidden;
     background: #e6eaee;
+    border-radius: 20px;
 }
 
 .portrait-image {
@@ -244,6 +252,7 @@ video {
     gap: 8px;
     padding: 16px 18px;
     background: var(--accent-soft);
+    border-radius: 18px;
 }
 
 .hero-note span {
@@ -355,6 +364,7 @@ video {
     border: 1px solid var(--border);
     cursor: pointer;
     overflow: hidden;
+    border-radius: 20px;
     transition:
         transform 160ms ease,
         box-shadow 160ms ease,
@@ -435,6 +445,7 @@ video {
     color: var(--muted);
     background: #fff;
     font-size: 0.86rem;
+    border-radius: 999px;
 }
 
 .lens-row {
@@ -451,6 +462,7 @@ video {
     background: #fff;
     text-align: left;
     cursor: pointer;
+    border-radius: 18px;
 }
 
 .lens-chip span,
@@ -481,6 +493,7 @@ video {
     padding: 18px;
     background: var(--paper);
     border: 1px solid var(--border);
+    border-radius: 22px;
 }
 
 .archive-index,
@@ -501,6 +514,7 @@ video {
     border: 1px solid var(--ink);
     background: transparent;
     cursor: pointer;
+    border-radius: 18px;
 }
 
 .site-footer {
@@ -530,6 +544,7 @@ video {
     background: var(--surface);
     border: 1px solid var(--border-strong);
     box-shadow: 0 28px 70px rgba(12, 16, 21, 0.22);
+    border-radius: 24px;
 }
 
 .modal-header {
@@ -550,6 +565,7 @@ video {
     background: transparent;
     cursor: pointer;
     color: var(--ink);
+    border-radius: 14px;
 }
 
 .modal-grid {
@@ -578,6 +594,7 @@ video {
     background: #fff;
     text-align: left;
     cursor: pointer;
+    border-radius: 16px;
 }
 
 .asset-row.is-active {
@@ -615,6 +632,7 @@ video {
     min-height: 420px;
     border: 1px solid var(--border);
     background: #fff;
+    border-radius: 20px;
 }
 
 .preview-frame--visual {
@@ -638,6 +656,7 @@ video {
     border: 1px solid var(--ink);
     color: var(--ink);
     font-size: 0.82rem;
+    border-radius: 999px;
 }
 
 .preview-note,

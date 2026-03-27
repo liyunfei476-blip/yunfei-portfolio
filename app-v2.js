@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderFeatured();
     renderArchive();
     bindModalEvents();
+    closeModal();
 });
 
 function renderHero() {
