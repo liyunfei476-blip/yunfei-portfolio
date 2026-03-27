@@ -2,12 +2,10 @@ let activeLens = 'all';
 let selectedCollectionId = null;
 let selectedAssetId = null;
 
-const tickerItems = Array.from({ length: 10 }, () => 'AI 应用<em></em>数据流程<em></em>产品原型<em></em>研究沉淀');
-
 document.addEventListener('DOMContentLoaded', () => {
     renderHero();
-    renderTicker();
-    renderDashboard();
+    renderInfoRibbon();
+    renderPanels();
     renderLensChips();
     renderFeatured();
     renderArchive();
@@ -15,49 +13,35 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function renderHero() {
-    document.getElementById('hero-kicker').textContent = 'Research / Systems / Product';
+    document.getElementById('hero-kicker').textContent = 'Research, Systems, Product';
     document.getElementById('hero-title').textContent = profile.role;
     document.getElementById('hero-intro').textContent = profile.intro;
     document.getElementById('hero-statement').textContent = profile.statement;
     document.getElementById('hero-resume').href = profile.resume;
     document.getElementById('footer-mail').href = `mailto:${profile.email}`;
     document.getElementById('footer-resume').href = profile.resume;
-    document.getElementById('footer-copy').textContent = '如果你想聊项目、实习或合作，可以直接联系我。';
+    document.getElementById('footer-copy').textContent = '如果你想进一步了解项目细节、实习经历或合作可能，可以直接联系我。';
     document.getElementById('portrait-image').src = profile.portrait;
     document.getElementById('portrait-image').alt = `${profile.name} 个人照片`;
 }
 
-function renderTicker() {
-    document.getElementById('ticker-track').innerHTML = tickerItems.map(item => `<span>${item}</span>`).join('');
-}
-
-function renderDashboard() {
-    const statsContainer = document.getElementById('stats-wall');
-    statsContainer.innerHTML = quickStats.map((item, index) => `
-        <article class="stat-card stat-card--${(index % 3) + 1}">
+function renderInfoRibbon() {
+    document.getElementById('info-ribbon').innerHTML = quickStats.map(item => `
+        <article class="ribbon-card">
             <strong>${item.value}</strong>
             <span>${item.label}</span>
         </article>
     `).join('');
+}
 
-    const notesContainer = document.getElementById('note-stack');
-    notesContainer.innerHTML = practiceNotes.map((note, index) => `
-        <article class="sticky-note sticky-note--${(index % 3) + 1}">
-            <span>Note 0${index + 1}</span>
-            <p>${note}</p>
-        </article>
-    `).join('');
+function renderPanels() {
+    document.getElementById('notes-list').innerHTML = practiceNotes.map(note => `<li>${note}</li>`).join('');
 
-    const contactContainer = document.getElementById('contact-board');
-    contactContainer.innerHTML = `
-        <p class="panel-label">Now Available</p>
-        <div class="contact-line">地点: <strong>${profile.location}</strong></div>
+    document.getElementById('contact-panel').innerHTML = `
+        <p class="panel-label">Availability</p>
+        <div class="contact-line">地点: <span>${profile.location}</span></div>
         <div class="contact-line">邮箱: <a href="mailto:${profile.email}">${profile.email}</a></div>
         <div class="contact-line">电话: <a href="tel:${profile.phone}">${profile.phone}</a></div>
-        <div class="divider"></div>
-        <div class="board-note">不把所有项目做成同一种卡片</div>
-        <div class="board-note">让文件、截图和过程直接出镜</div>
-        <div class="board-note">既有系统感，也保留表达欲</div>
     `;
 }
 
@@ -82,14 +66,17 @@ function renderLensChips() {
 function renderFeatured() {
     const featuredGrid = document.getElementById('featured-grid');
     const featuredCollections = collections.filter(collection => featuredCollectionIds.includes(collection.id));
+
     featuredGrid.innerHTML = featuredCollections.map((collection, index) => `
         <article class="featured-card featured-card--${(index % 4) + 1}" data-collection-id="${collection.id}">
             <div class="featured-media">
                 ${renderFeaturedMedia(collection)}
-                <div class="featured-chip">${collection.year}</div>
             </div>
             <div class="featured-body">
-                <p class="card-kicker">${collection.eyebrow}</p>
+                <div class="featured-topline">
+                    <p class="card-kicker">${collection.eyebrow}</p>
+                    <span>${collection.year}</span>
+                </div>
                 <h4>${collection.title}</h4>
                 <p>${collection.summary}</p>
                 <div class="metric-row">
@@ -134,7 +121,7 @@ function renderArchive() {
                 <span>${collection.assets.length} 份文件</span>
             </div>
             <button type="button" class="archive-action" data-collection-id="${collection.id}">
-                <span>展开查看</span>
+                <span>查看内容</span>
                 <span>→</span>
             </button>
         </article>
