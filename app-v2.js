@@ -145,11 +145,15 @@ function openCollection(collectionId) {
     selectedAssetId = collection.assets[0] ? collection.assets[0].id : null;
     renderModal();
     document.body.classList.add('is-locked');
-    document.getElementById('modal-shell').hidden = false;
+    const modalShell = document.getElementById('modal-shell');
+    modalShell.hidden = false;
+    modalShell.style.display = 'grid';
 }
 
 function closeModal() {
-    document.getElementById('modal-shell').hidden = true;
+    const modalShell = document.getElementById('modal-shell');
+    modalShell.hidden = true;
+    modalShell.style.display = 'none';
     document.body.classList.remove('is-locked');
     selectedCollectionId = null;
     selectedAssetId = null;
