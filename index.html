@@ -3,279 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>李云飞 · 个人作品集</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>李云飞 | Portfolio Archive</title>
+    <meta name="description" content="李云飞的个人作品集，聚焦研究、流程系统、产品原型与表达实践。">
+    <link rel="icon" type="image/jpeg" href="个人照片/个人照片.jpg">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/x-icon" href="个人照片/个人照片.jpg">
-    <style>
-        /* 自定义样式 */
-        .photo-container {
-            position: relative;
-            overflow: hidden;
-        }
-        .photo-container img {
-            object-position: center 30%; /* 向下偏移20%，露出头部 */
-        }
-        .folder-card {
-            transition: all 0.3s ease;
-        }
-        .folder-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        .file-item {
-            transition: background-color 0.2s ease;
-        }
-        .file-item:hover {
-            background-color: #f9fafb;
-        }
-        .expandable-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease-out;
-        }
-        .expandable-content.expanded {
-            max-height: 2000px; /* 足够大的值以容纳内容 */
-        }
-    </style>
 </head>
-<body class="bg-gradient-to-br from-gray-50 to-gray-100 text-gray-800 min-h-screen">
-    <!-- 导航栏 -->
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
-        <div class="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
-            <div class="flex items-center space-x-2 mb-4 md:mb-0">
-                <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full"></div>
-                <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                    李云飞 · 作品集
-                </h1>
-            </div>
-            <div class="flex space-x-4">
-                <a href="#portfolio" class="font-medium text-gray-600 hover:text-blue-600">作品展示</a>
-                <a href="个人简历/重庆大学-李云飞-简历.pdf" target="_blank" class="font-medium text-gray-600 hover:text-blue-600">下载简历</a>
-                <a href="#contact" class="font-medium text-gray-600 hover:text-blue-600">联系信息</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- 英雄区 -->
-    <header class="container mx-auto px-4 py-12 md:py-16">
-        <div class="flex flex-col md:flex-row items-center justify-between">
-            <div class="md:w-1/2 mb-10 md:mb-0 order-2 md:order-1">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">
-                    你好，我是 <span class="text-blue-600">李云飞</span>
-                </h2>
-                <p class="text-xl text-gray-600 mb-6">
-                    重庆大学学生，热衷于技术创新与产品开发。<br>
-                    以下是我整理的作品集，按项目分类展示。
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="#portfolio" class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-shadow">
-                        浏览作品集
-                    </a>
-                    <a href="个人简历/重庆大学-李云飞-简历.pdf" target="_blank" class="px-6 py-3 border-2 border-blue-500 text-blue-600 font-semibold rounded-full hover:bg-blue-50 transition-colors">
-                        <i class="fas fa-download mr-2"></i>下载完整简历
-                    </a>
-                </div>
-            </div>
-            <div class="md:w-1/3 mb-10 md:mb-0 order-1 md:order-2">
-                <div class="relative">
-                    <div class="w-64 h-64 rounded-full overflow-hidden border-8 border-white shadow-2xl photo-container">
-                        <img src="个人照片/个人照片.jpg" alt="个人照片" class="w-full h-full object-cover"
-                             style="object-position: center 25%;"
-                             onerror="this.src='https://via.placeholder.com/400x400/3b82f6/ffffff?text=李云飞'">
-                    </div>
-                    <div class="absolute -bottom-4 -right-4 bg-gradient-to-r from-green-400 to-blue-500 text-white p-4 rounded-2xl shadow-xl">
-                        <div class="text-center">
-                            <div class="text-2xl font-bold" id="folder-count">8</div>
-                            <div class="text-sm">个项目分类</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- 作品集展示 -->
-    <main id="portfolio" class="container mx-auto px-4 py-8">
-        <div class="text-center mb-12">
-            <h3 class="text-3xl font-bold mb-4">作品集展示</h3>
-            <p class="text-gray-600 max-w-2xl mx-auto">
-                以下是我的作品按项目分类展示。每个项目包含多个相关文件，点击项目卡片查看详细信息。
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16" id="folders-grid">
-            <!-- 文件夹卡片将通过JavaScript动态生成 -->
-        </div>
-
-        <!-- 简历嵌入部分 -->
-        <div class="bg-white rounded-2xl shadow-lg p-8 mb-12 border border-gray-200">
-            <div class="flex items-center justify-between mb-6">
+<body>
+    <div class="page-shell">
+        <header class="site-header">
+            <div class="brand-lockup">
+                <span class="brand-mark"></span>
                 <div>
-                    <h3 class="text-2xl font-bold">简历摘要</h3>
-                    <p class="text-gray-600">以下是我的简历关键信息，完整简历可下载查看</p>
+                    <p class="brand-kicker">Portfolio Archive</p>
+                    <h1>李云飞</h1>
                 </div>
-                <a href="个人简历/重庆大学-李云飞-简历.pdf" target="_blank"
-                   class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-shadow flex items-center">
-                    <i class="fas fa-download mr-2"></i>下载完整简历
-                </a>
             </div>
+            <nav class="site-nav" aria-label="页面导航">
+                <a href="#selected-work">作品精选</a>
+                <a href="#archive">全部目录</a>
+                <a href="#contact">联系</a>
+            </nav>
+        </header>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h4 class="text-xl font-semibold mb-4 text-blue-600">教育背景</h4>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <i class="fas fa-graduation-cap text-blue-500 mt-1 mr-3"></i>
-                            <div>
-                                <p class="font-medium">河北工业大学</p>
-                                <p class="text-gray-600">工程管理 | 本科 (GPA: 3.86/4)</p>
-                                <p class="text-sm text-gray-500">2020.09 – 2024.06</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-graduation-cap text-blue-500 mt-1 mr-3"></i>
-                            <div>
-                                <p class="font-medium">重庆大学</p>
-                                <p class="text-gray-600">管理科学与工程 | 硕士</p>
-                                <p class="text-sm text-gray-500">2024.09 – 2027.06 (预计)</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-xl font-semibold mb-4 text-green-600">技术技能</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">PowerQuery</span>
-                        <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">Android开发</span>
-                        <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">数据分析</span>
-                        <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-sm">SQL</span>
-                        <span class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-sm">AI应用</span>
-                        <span class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm">自动化流程</span>
+        <main>
+            <section class="hero">
+                <div class="hero-copy">
+                    <p id="hero-kicker" class="section-kicker"></p>
+                    <h2 id="hero-title"></h2>
+                    <p id="hero-intro" class="hero-text"></p>
+                    <p id="hero-statement" class="hero-text hero-text--muted"></p>
+                    <div class="hero-actions">
+                        <a href="#selected-work" class="button button--solid">进入作品</a>
+                        <a id="hero-resume" href="#" target="_blank" rel="noreferrer" class="button button--ghost">查看简历</a>
                     </div>
                 </div>
 
-                <div>
-                    <h4 class="text-xl font-semibold mb-4 text-purple-600">项目与实习经验</h4>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <i class="fas fa-briefcase text-purple-500 mt-1 mr-3"></i>
-                            <div>
-                                <p class="font-medium">技术项目管理实习生 | 北京字节跳动科技有限公司</p>
-                                <p class="text-gray-600">项目管理流程体系搭建，数据体系建设与优化，数据分析 & AI 提效</p>
-                                <p class="text-sm text-gray-500">2025.12 - 2026.03</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-chart-line text-purple-500 mt-1 mr-3"></i>
-                            <div>
-                                <p class="font-medium">数据运营实习生 | 作业帮教育科技（北京）有限公司</p>
-                                <p class="text-gray-600">培训数据运营，数据体系建设与优化，数据监控与业务分析</p>
-                                <p class="text-sm text-gray-500">2025.10 - 2025.12</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-mobile-alt text-purple-500 mt-1 mr-3"></i>
-                            <div>
-                                <p class="font-medium">生理周期App开发</p>
-                                <p class="text-gray-600">Android应用，包含数据统计和提醒功能</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-hospital text-purple-500 mt-1 mr-3"></i>
-                            <div>
-                                <p class="font-medium">妇幼保健院自动化流程</p>
-                                <p class="text-gray-600">使用PowerQuery搭建数据处理自动化流程</p>
-                            </div>
-                        </li>
-                    </ul>
+                <div class="hero-portrait">
+                    <div class="portrait-card">
+                        <img id="portrait-image" class="portrait-image" src="" alt="">
+                    </div>
+                    <div class="portrait-note">
+                        <p>目前关注</p>
+                        <strong>AI 应用、数据流程、产品化表达</strong>
+                    </div>
                 </div>
+            </section>
 
-                <div>
-                    <h4 class="text-xl font-semibold mb-4 text-red-600">学习成果</h4>
-                    <ul class="space-y-2">
-                        <li class="flex items-center">
-                            <i class="fas fa-file-pdf text-red-500 mr-2"></i>
-                            <span>AI系统化学习手册</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-file-pdf text-red-500 mr-2"></i>
-                            <span>数据分析学习笔记</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-file-pdf text-red-500 mr-2"></i>
-                            <span>SQL学习笔记</span>
-                        </li>
-                    </ul>
+            <section class="overview-grid">
+                <div class="overview-panel">
+                    <div id="stats-grid" class="stats-grid"></div>
                 </div>
-            </div>
-        </div>
-    </main>
+                <div class="overview-panel">
+                    <p class="panel-label">工作方法</p>
+                    <ul id="notes-list" class="notes-list"></ul>
+                </div>
+                <div id="contact-panel" class="overview-panel"></div>
+            </section>
 
-    <!-- 模态框 -->
-    <div id="modal" class="fixed inset-0 bg-black/70 z-50 hidden items-center justify-center p-4">
-        <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-auto">
-            <div class="sticky top-0 bg-white border-b p-6 flex justify-between items-center">
-                <div>
-                    <h3 class="text-2xl font-bold" id="modal-title"></h3>
-                    <p class="text-gray-600" id="modal-description"></p>
+            <section class="section-block" id="selected-work">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">Selected Work</p>
+                        <h3>先看最能代表我的四组作品</h3>
+                    </div>
+                    <p class="section-summary">这些项目分别对应我最常切换的工作状态: 搭系统、做产品、做试验、做沉淀。</p>
                 </div>
-                <button id="modal-close" class="text-3xl text-gray-400 hover:text-gray-700">&times;</button>
+                <div id="featured-grid" class="featured-grid"></div>
+            </section>
+
+            <section class="section-block" id="archive">
+                <div class="section-heading">
+                    <div>
+                        <p class="section-kicker">Archive</p>
+                        <h3>全部目录</h3>
+                    </div>
+                    <p class="section-summary">按工作视角筛选，而不是按模板栏目名机械拆分。</p>
+                </div>
+                <div id="lens-row" class="lens-row" aria-label="作品视角筛选"></div>
+                <div id="archive-list" class="archive-list"></div>
+            </section>
+        </main>
+
+        <footer class="site-footer" id="contact">
+            <div>
+                <p class="section-kicker">Contact</p>
+                <h3 id="footer-copy"></h3>
             </div>
-            <div class="p-6">
-                <div class="mb-8" id="modal-content">
-                    <!-- 动态内容 -->
+            <div class="footer-actions">
+                <a id="footer-mail" href="#" class="button button--solid">发送邮件</a>
+                <a id="footer-resume" href="#" target="_blank" rel="noreferrer" class="button button--ghost">打开简历</a>
+            </div>
+        </footer>
+    </div>
+
+    <div id="modal-shell" class="modal-shell" hidden>
+        <div id="modal-backdrop" class="modal-backdrop"></div>
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="modal-header">
+                <div>
+                    <p id="modal-kicker" class="card-kicker"></p>
+                    <h3 id="modal-title"></h3>
+                    <p id="modal-description"></p>
                 </div>
-                <div class="border-t pt-8">
-                    <h4 class="text-xl font-bold mb-4">详细信息</h4>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <h5 class="font-semibold text-gray-700 mb-2">文件信息</h5>
-                            <ul class="space-y-2" id="modal-info"></ul>
+                <button id="modal-close" type="button" class="modal-close" aria-label="关闭弹窗">×</button>
+            </div>
+            <div class="modal-grid">
+                <aside class="modal-sidebar">
+                    <div id="modal-metrics" class="modal-meta"></div>
+                    <div id="modal-asset-list" class="asset-list"></div>
+                </aside>
+                <div class="modal-content">
+                    <div id="modal-preview"></div>
+                    <div class="asset-detail">
+                        <div class="asset-detail__header">
+                            <div>
+                                <p id="asset-type" class="card-kicker"></p>
+                                <h4 id="asset-title"></h4>
+                            </div>
+                            <a id="asset-open" class="text-link" href="#" target="_blank" rel="noreferrer">打开源文件</a>
                         </div>
-                        <div>
-                            <h5 class="font-semibold text-gray-700 mb-2">操作</h5>
-                            <div class="space-y-3" id="modal-actions"></div>
-                        </div>
+                        <p id="asset-description"></p>
+                        <div id="asset-tags" class="tag-row"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!-- 联系信息 -->
-    <footer id="contact" class="bg-gradient-to-r from-gray-900 to-black text-white mt-12 py-12">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <h3 class="text-2xl font-bold mb-2">李云飞 · 个人作品集</h3>
-                    <p class="text-gray-400 mb-4">展示我的项目、学习和创作成果</p>
-                    <div class="space-y-2">
-                        <div class="flex items-center">
-                            <i class="fas fa-phone text-gray-400 mr-3"></i>
-                            <span class="text-gray-300">159-3234-1031</span>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-envelope text-gray-400 mr-3"></i>
-                            <span class="text-gray-300">liyunfei_apply@163.com</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="text-center md:text-right">
-                    <p class="text-gray-400 mb-2">© <span id="current-year">2026</span> 版权所有</p>
-                    <p class="text-gray-500 text-sm">
-                        本页面为个人作品展示，仅用于求职面试等非商业用途。
-                    </p>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-500 text-sm">
-                <p>最后更新: 2026年3月24日 | 使用 HTML + Tailwind CSS + JavaScript 构建</p>
-                <p class="mt-2">访问链接: <span id="site-url" class="text-blue-400">localhost:8080</span></p>
-            </div>
-        </div>
-    </footer>
 
     <script src="data-v2.js"></script>
     <script src="app-v2.js"></script>
